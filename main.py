@@ -32,11 +32,14 @@ with st.expander("Setup"):
     if ip == "":
         ip = "192.168.1.100"
         st.write(f"Server IP defaulted to: {ip}. Please update the IP address.")
-        sensor_data_url = f"http://{ip}:8000/bhoomi/sensor/get_latest"
-        response_data, _ = APIInterface().get(route=sensor_data_url)
-    else:
-        sensor_data_url = f"http://{ip}:8000/bhoomi/sensor/get_latest"
-        response_data, _ = APIInterface().get(route=sensor_data_url)
+    #     sensor_data_url = f"http://{ip}:8000/bhoomi/sensor/get_latest"
+    #     response_data, _ = APIInterface().get(route=sensor_data_url)
+    # else:
+    #     sensor_data_url = f"http://{ip}:8000/bhoomi/sensor/get_latest"
+    #     response_data, _ = APIInterface().get(route=sensor_data_url)
+if st.button("Refresh"):
+    sensor_data_url = f"http://{ip}:8000/bhoomi/sensor/get_latest"
+    response_data, _ = APIInterface().get(route=sensor_data_url)
 old_water_temp = response_data[1].get("water_temperature")
 current_water_temp = response_data[0].get("water_temperature")
 old_water_tds = response_data[1].get("tds_level")
