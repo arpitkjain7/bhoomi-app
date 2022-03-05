@@ -25,6 +25,14 @@ response_data = [
         "air_temperature": 0,
     },
 ]
+old_water_temp = response_data[1].get("water_temperature")
+current_water_temp = response_data[0].get("water_temperature")
+old_water_tds = response_data[1].get("tds_level")
+current_water_tds = response_data[0].get("tds_level")
+old_water_ph_level = response_data[1].get("ph_level")
+current_water_ph_level = response_data[0].get("ph_level")
+old_air_temp = response_data[1].get("air_temperature")
+current_air_temp = response_data[0].get("air_temperature")
 with st.expander("Setup"):
     ip = "192.168.1.100"
     ip = st.text_input(label="Server IP", value="", placeholder="Enter Server IP")
@@ -40,14 +48,14 @@ with st.expander("Setup"):
 if st.button("Refresh"):
     sensor_data_url = f"http://{ip}:8000/bhoomi/sensor/get_latest"
     response_data, _ = APIInterface().get(route=sensor_data_url)
-old_water_temp = response_data[1].get("water_temperature")
-current_water_temp = response_data[0].get("water_temperature")
-old_water_tds = response_data[1].get("tds_level")
-current_water_tds = response_data[0].get("tds_level")
-old_water_ph_level = response_data[1].get("ph_level")
-current_water_ph_level = response_data[0].get("ph_level")
-old_air_temp = response_data[1].get("air_temperature")
-current_air_temp = response_data[0].get("air_temperature")
+    old_water_temp = response_data[1].get("water_temperature")
+    current_water_temp = response_data[0].get("water_temperature")
+    old_water_tds = response_data[1].get("tds_level")
+    current_water_tds = response_data[0].get("tds_level")
+    old_water_ph_level = response_data[1].get("ph_level")
+    current_water_ph_level = response_data[0].get("ph_level")
+    old_air_temp = response_data[1].get("air_temperature")
+    current_air_temp = response_data[0].get("air_temperature")
 st.header("Live Sensor Data")
 col1, col2 = st.columns(2)
 col1.metric(
